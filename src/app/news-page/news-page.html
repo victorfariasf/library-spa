@@ -1,0 +1,20 @@
+<h1 class="w-100 text-center">Notícias sobre livros</h1>
+<ngx-spinner type="ball-scale-multiple" bdColor="rgba(0,0,0,0.7)" color="#fff" size="medium">
+    <p style="font-size: 20px; color: white">Carregando</p>
+</ngx-spinner>
+<div class="news-grid">
+  <div class="news-card" *ngFor="let news of newsList">
+    <div class="news-image">
+      <img [src]="news.urlToImage" alt="Imagem da notícia">
+    </div>
+
+    <div class="news-content">
+      <h3>{{ news.title }}</h3>
+      <p>{{ news.description }}</p>
+
+      <a [href]="news.url" target="_blank">
+        Ler matéria
+      </a>
+    </div>
+  </div>
+</div>

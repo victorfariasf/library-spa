@@ -1,0 +1,14 @@
+<div class="w-100">
+    <div class="d-flex justify-content-center align-items-center">
+        <img src="/logo/logo-v2.png" alt="logo da biblioteca">
+    </div>
+    <hr>
+    <div class="d-flex justify-content-center align-items-center gap-5 mt-5 mb-5 fs-2">
+        <a href="/"><i class="bi bi-house-fill">Início</i></a>
+        <a href="/livros"><i class="bi bi-book"></i>Livros</a>
+        <a href="/usuario"><i class="bi bi-person-circle"></i>Usuario</a>
+        <a role="button" (click)="onLogout()"><i class="bi bi-newspaper"></i>Sair</a>
+    </div>
+    <hr>
+</div>
+<router-outlet></router-outlet>

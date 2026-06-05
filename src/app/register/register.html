@@ -1,0 +1,10 @@
+<div class="w-100 d-flex justify-content-center align-items-center" id="main-box">
+    <form class="d-flex flex-column justify-content-center align-items-start gap-3" #formLogin="ngForm" (ngSubmit)="onSubmit()">
+        <h2 class="w-100">Faça sua registro!</h2>
+        <label class="w-100" for="username">Login:</label>
+        <input class="w-100" [(ngModel)]="login" type="text" id="username" name="username" required>
+        <label class="w-100" for="password">Senha:</label>
+        <input class="w-100" [(ngModel)]="password" type="password" id="password" name="password" required>
+        <button class="w-100 btn btn-primary" type="submit" [disabled]="!formLogin.valid">Registrar</button>
+    </form>
+</div>
