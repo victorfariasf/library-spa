@@ -1,9 +1,35 @@
+.news-header
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 16px
+  margin-bottom: 18px
+
+.eyebrow
+  text-transform: uppercase
+  letter-spacing: 0.18em
+  font-size: 0.72rem
+  color: #8c6d45
+  margin: 0 0 0.3rem
+
+.status-pill
+  padding: 10px 14px
+  border-radius: 999px
+  background: #efe2d1
+  color: #6c4d2a
+
+.empty-state
+  margin-bottom: 18px
+  padding: 14px 16px
+  border-radius: 14px
+  background: #ffeaea
+  color: #953636
+
 .news-grid
   width: 100%
   display: grid
   grid-template-columns: repeat(3, 1fr)
   gap: 24px
-  padding: 24px
 
 .news-card
   min-height: 420px
@@ -68,6 +94,10 @@
 @media (max-width: 992px)
   .news-grid
     grid-template-columns: repeat(2, 1fr)
+
+  .news-header
+    flex-direction: column
+    align-items: flex-start
 
 @media (max-width: 576px)
   .news-grid

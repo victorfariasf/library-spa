@@ -18,10 +18,7 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js",
-              "@angular/localize/init"
-            ],
+            "polyfills": ["zone.js", "@angular/localize/init"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "sass",
             "assets": [
@@ -67,7 +64,8 @@
               "buildTarget": "library-system-spa:build:production"
             },
             "development": {
-              "buildTarget": "library-system-spa:build:development"
+              "buildTarget": "library-system-spa:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
@@ -78,11 +76,7 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing",
-              "@angular/localize/init"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing", "@angular/localize/init"],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "sass",
             "assets": [
@@ -91,12 +85,13 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.sass"
-            ]
+            "styles": ["src/styles.sass"]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

@@ -1,0 +1,139 @@
+.shell
+	min-height: 100vh
+	display: grid
+	grid-template-columns: 280px 1fr
+	background: linear-gradient(135deg, #f5efe6 0%, #faf8f2 45%, #eef3f8 100%)
+
+.sidebar
+	background: #21180f
+	color: #f6f1e8
+	padding: 24px
+	display: flex
+	flex-direction: column
+	gap: 28px
+
+.brand
+	display: flex
+	gap: 16px
+	align-items: center
+
+	img
+		width: 56px
+		height: 56px
+		object-fit: cover
+		border-radius: 16px
+		background: rgba(255, 255, 255, 0.1)
+
+	strong
+		display: block
+		font-size: 1rem
+
+	span
+		display: block
+		font-size: 0.85rem
+		color: rgba(246, 241, 232, 0.72)
+
+.nav-list
+	display: flex
+	flex-direction: column
+	gap: 10px
+
+.nav-item
+	color: rgba(246, 241, 232, 0.82)
+	text-decoration: none
+	padding: 12px 14px
+	border-radius: 14px
+	display: flex
+	align-items: center
+	gap: 12px
+	transition: 0.2s ease
+
+	&:hover,
+	&.active
+		background: rgba(255, 255, 255, 0.1)
+		color: #fff
+
+.logout-btn
+	margin-top: auto
+	border: 1px solid rgba(255, 255, 255, 0.12)
+	background: transparent
+	color: #fff
+	border-radius: 14px
+	padding: 12px 14px
+	display: flex
+	gap: 12px
+	align-items: center
+
+.content
+	display: flex
+	flex-direction: column
+	gap: 20px
+	padding: 28px
+
+.topbar
+	display: flex
+	justify-content: space-between
+	align-items: center
+	gap: 16px
+
+.eyebrow
+	text-transform: uppercase
+	letter-spacing: 0.18em
+	font-size: 0.72rem
+	margin-bottom: 0.35rem
+	color: #7a6b58
+
+.topbar h1
+	margin: 0
+	font-size: 1.8rem
+	color: #1f1a17
+
+.profile-chip
+	background: rgba(255, 255, 255, 0.75)
+	border: 1px solid rgba(35, 25, 14, 0.08)
+	border-radius: 18px
+	padding: 12px 16px
+	display: flex
+	align-items: center
+	gap: 12px
+	box-shadow: 0 10px 30px rgba(58, 41, 22, 0.08)
+
+	span
+		width: 44px
+		height: 44px
+		border-radius: 50%
+		display: inline-flex
+		align-items: center
+		justify-content: center
+		background: linear-gradient(135deg, #c38943, #7a4c2e)
+		color: white
+		font-weight: 700
+
+	strong
+		display: block
+
+	small
+		color: #786c5f
+
+.page-frame
+	background: rgba(255, 255, 255, 0.82)
+	backdrop-filter: blur(18px)
+	border: 1px solid rgba(53, 35, 20, 0.08)
+	border-radius: 28px
+	padding: 24px
+	box-shadow: 0 20px 60px rgba(41, 28, 15, 0.08)
+
+@media (max-width: 992px)
+	.shell
+		grid-template-columns: 1fr
+
+	.sidebar
+		border-bottom-left-radius: 24px
+		border-bottom-right-radius: 24px
+
+	.content
+		padding: 18px
+
+	.topbar
+		flex-direction: column
+		align-items: flex-start

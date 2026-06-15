@@ -1,0 +1,39 @@
+<section class="dashboard-hero">
+  <div>
+    <p class="eyebrow">Visão geral</p>
+    <h2>Painel operacional da biblioteca</h2>
+    <p>
+      Este painel já conversa com o serviço de dados e pode apontar para o backend real sem
+      refatoração de tela.
+    </p>
+  </div>
+</section>
+
+<ng-container *ngIf="overview$ | async as overview">
+  <div class="stats-grid">
+    @for (card of overview; track card.title) {
+      <article class="stat-card">
+        <span class="stat-value">{{ card.value }}</span>
+        <h3>{{ card.title }}</h3>
+        <p>{{ card.description }}</p>
+      </article>
+    }
+  </div>
+</ng-container>
+
+<section class="dashboard-notes">
+  <article>
+    <h3>Rotas prontas</h3>
+    <p>
+      /dashboard, /livros, /usuarios, /emprestimos, /historico e /news já estão preparadas para o
+      backend.
+    </p>
+  </article>
+  <article>
+    <h3>Mocks visuais</h3>
+    <p>
+      Caso o backend ainda não responda, os serviços retornam dados locais para o time validar a
+      experiência.
+    </p>
+  </article>
+</section>

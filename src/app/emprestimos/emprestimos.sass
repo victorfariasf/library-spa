@@ -1,0 +1,57 @@
+.loan-grid
+  display: grid
+  gap: 20px
+
+.loan-form
+  background: #fff
+  border-radius: 22px
+  border: 1px solid rgba(58, 39, 18, 0.08)
+  padding: 20px
+
+.grid-2,
+.grid-3
+  display: grid
+  gap: 14px
+
+.grid-2
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+
+.grid-3
+  grid-template-columns: repeat(3, minmax(0, 1fr))
+
+label
+  display: flex
+  flex-direction: column
+  gap: 8px
+
+input,
+select
+  border: 1px solid #d7c8b3
+  border-radius: 14px
+  padding: 12px 14px
+
+.primary-btn
+  border: 0
+  border-radius: 14px
+  padding: 14px 18px
+  background: linear-gradient(135deg, #8d5b2a, #59331a)
+  color: #fff
+
+.error-banner,
+.success-banner
+  border-radius: 12px
+  padding: 12px 14px
+  margin: 8px 0 16px
+
+.error-banner
+  background: #ffecec
+  color: #9c2f2f
+
+.success-banner
+  background: #e7f7ec
+  color: #266243
+
+@media (max-width: 992px)
+  .grid-2,
+  .grid-3
+    grid-template-columns: 1fr

@@ -1,0 +1,26 @@
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Catálogo</p>
+    <h2>Busca preditiva de livros</h2>
+  </div>
+
+  <label class="search-box">
+    <i class="bi bi-search"></i>
+    <input [formControl]="searchControl" type="search" placeholder="Buscar por título" />
+  </label>
+</section>
+
+@if (loading) {
+  <div class="state-box">Carregando catálogo...</div>
+}
+
+<div class="books-grid">
+  @for (book of books; track book.id_livro) {
+    <article class="book-card">
+      <div class="book-index">#{{ book.id_livro }}</div>
+      <h3>{{ book.titulo }}</h3>
+      <p>{{ book.autor }}</p>
+      <small>{{ book.editora }} · {{ book.ano_publicacao }}</small>
+    </article>
+  }
+</div>

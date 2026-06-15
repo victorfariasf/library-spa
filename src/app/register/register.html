@@ -1,10 +1,34 @@
-<div class="w-100 d-flex justify-content-center align-items-center" id="main-box">
-    <form class="d-flex flex-column justify-content-center align-items-start gap-3" #formLogin="ngForm" (ngSubmit)="onSubmit()">
-        <h2 class="w-100">Faça sua registro!</h2>
-        <label class="w-100" for="username">Login:</label>
-        <input class="w-100" [(ngModel)]="login" type="text" id="username" name="username" required>
-        <label class="w-100" for="password">Senha:</label>
-        <input class="w-100" [(ngModel)]="password" type="password" id="password" name="password" required>
-        <button class="w-100 btn btn-primary" type="submit" [disabled]="!formLogin.valid">Registrar</button>
+<div class="register-layout">
+  <section class="register-copy">
+    <p class="eyebrow">Cadastro de demonstração</p>
+    <h1>Crie um acesso para navegar pelas telas do sistema.</h1>
+    <p>O backend real pode assumir o fluxo de autenticação sem alterar a estrutura da interface.</p>
+  </section>
+
+  <section class="register-card">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="register-form">
+      <h2>Novo usuário</h2>
+
+      <label>
+        Nome completo
+        <input type="text" formControlName="nome" placeholder="Nome e sobrenome" />
+      </label>
+
+      <label>
+        E-mail
+        <input type="email" formControlName="email" placeholder="voce@universidade.edu" />
+      </label>
+
+      <label>
+        Senha
+        <input type="password" formControlName="senha" placeholder="Mínimo de 6 caracteres" />
+      </label>
+
+      <button type="submit" class="primary-btn" [disabled]="form.invalid">Cadastrar</button>
+
+      @if (successMessage()) {
+        <div class="feedback success">{{ successMessage() }}</div>
+      }
     </form>
+  </section>
 </div>

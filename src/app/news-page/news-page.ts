@@ -1,29 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { OpenLibraryExternal } from '../service/open-library-external';
-import {CommonModule} from "@angular/common";
-import { NgxSpinnerModule } from 'ngx-spinner';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { CommonModule } from '@angular/common';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-news-page',
   standalone: true,
-  imports: [CommonModule, NgxSpinnerModule],
+  imports: [CommonModule],
   templateUrl: './news-page.html',
   styleUrl: './news-page.sass',
 })
-export class NewsPage {
+export class NewsPage implements OnInit {
+  private readonly openLibraryExternal = inject(OpenLibraryExternal);
 
   public newsList: any[] = [];
   public loading = true;
+  public error = '';
 
-  constructor(private openLibraryExternal: OpenLibraryExternal, private spinner: NgxSpinnerService) {}
-
-  ngOnInit() {
-    this.spinner.show();
-    this.openLibraryExternal.getLiteratureNews().subscribe(rsp => {
-      this.newsList = rsp;
-      console.log(this.newsList);
-      this.spinner.hide();
-    });
+  ngOnInit(): void {
+    this.loading = true;
+    this.openLibraryExternal
+      .getLiteratureNews()
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe({
+        next: (rsp) => {
+          this.newsList = rsp;
+        },
+        error: () => {
+          this.error = 'Não foi possível carregar as notícias agora.';
+          this.newsList = [];
+        },
+      });
   }
 }

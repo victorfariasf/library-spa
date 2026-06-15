@@ -1,0 +1,75 @@
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Empréstimos</p>
+    <h2>Fluxo com validação temporal</h2>
+  </div>
+</section>
+
+<div class="loan-grid">
+  <form class="loan-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="grid-3">
+      <label>
+        Aluno
+        <select formControlName="alunoId">
+          @for (student of students; track student.id_usuario) {
+            <option [value]="student.id_usuario">{{ student.nome }}</option>
+          }
+        </select>
+      </label>
+
+      <label>
+        Funcionário
+        <select formControlName="funcionarioId">
+          @for (employee of staff; track employee.id_usuario) {
+            <option [value]="employee.id_usuario">{{ employee.nome }}</option>
+          }
+        </select>
+      </label>
+
+      <label>
+        Livro
+        <select formControlName="livroId">
+          @for (book of books; track book.id_livro) {
+            <option [value]="book.id_livro">{{ book.titulo }}</option>
+          }
+        </select>
+      </label>
+    </div>
+
+    <div class="grid-2">
+      <label>
+        Data do empréstimo
+        <input type="date" formControlName="dataEmprestimo" />
+      </label>
+
+      <label>
+        Data de devolução
+        <input type="date" formControlName="dataDevolucao" />
+      </label>
+    </div>
+
+    @if (form.errors?.['invalidReturnDate']) {
+      <div class="error-banner">
+        A data de devolução deve ser igual ou posterior à data de empréstimo.
+      </div>
+    }
+
+    <div class="grid-2">
+      <label>
+        Multa
+        <input type="number" formControlName="multa" min="0" step="0.01" />
+      </label>
+
+      <label>
+        Observação
+        <input type="text" formControlName="observacao" />
+      </label>
+    </div>
+
+    <button type="submit" class="primary-btn" [disabled]="form.invalid">Salvar empréstimo</button>
+
+    @if (message) {
+      <p class="success-banner">{{ message }}</p>
+    }
+  </form>
+</div>

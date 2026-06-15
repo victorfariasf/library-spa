@@ -1,0 +1,116 @@
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Cadastro de usuários</p>
+    <h2>Aluno ou funcionário com especialização exclusiva</h2>
+  </div>
+</section>
+
+<div class="users-layout">
+  <form class="user-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="grid-2">
+      <label>
+        Nome
+        <input type="text" formControlName="nome" />
+      </label>
+
+      <label>
+        E-mail
+        <input type="email" formControlName="email" />
+        @if (form.controls.email.hasError('emailTaken')) {
+          <small class="error-text">Este e-mail já está em uso.</small>
+        }
+      </label>
+    </div>
+
+    <label>
+      Endereço
+      <input type="text" formControlName="endereco" />
+    </label>
+
+    <div class="radio-row">
+      @for (profile of profiles; track profile.value) {
+        <label class="radio-card">
+          <input
+            type="radio"
+            formControlName="perfil"
+            [value]="profile.value"
+            (change)="setupDynamicValidators()"
+          />
+          <span>{{ profile.label }}</span>
+        </label>
+      }
+    </div>
+
+    @if (isAluno) {
+      <div class="grid-2">
+        <label>
+          Matrícula
+          <input type="text" formControlName="matricula" />
+        </label>
+        <label>
+          Curso
+          <input type="text" formControlName="curso" />
+        </label>
+      </div>
+
+      <div class="grid-2">
+        <label>
+          Semestre
+          <input type="number" formControlName="semestre" min="1" />
+        </label>
+        <label>
+          Observação
+          <input type="text" formControlName="observacao" />
+        </label>
+      </div>
+    } @else {
+      <div class="grid-3">
+        <label>
+          Cargo
+          <input type="text" formControlName="cargo" />
+        </label>
+        <label>
+          Setor
+          <input type="text" formControlName="setor" />
+        </label>
+        <label>
+          Salário
+          <input type="number" formControlName="salario" min="0" step="0.01" />
+        </label>
+      </div>
+    }
+
+    <div class="form-actions">
+      <button type="submit" class="primary-btn" [disabled]="form.invalid">Salvar usuário</button>
+      @if (message) {
+        <span class="success-banner">{{ message }}</span>
+      }
+    </div>
+  </form>
+
+  <section class="table-card">
+    <h3>Registros de apoio</h3>
+    @if (loading) {
+      <p>Carregando usuários...</p>
+    } @else {
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (user of users; track user.id_usuario) {
+            <tr>
+              <td>{{ user.nome }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.status }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </section>
+</div>

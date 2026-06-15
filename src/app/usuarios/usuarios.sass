@@ -1,0 +1,87 @@
+.users-layout
+  display: grid
+  grid-template-columns: 1.15fr 0.85fr
+  gap: 20px
+
+.user-form,
+.table-card
+  background: #fff
+  border-radius: 22px
+  border: 1px solid rgba(58, 39, 18, 0.08)
+  padding: 20px
+
+.grid-2,
+.grid-3
+  display: grid
+  gap: 14px
+
+.grid-2
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+
+.grid-3
+  grid-template-columns: repeat(3, minmax(0, 1fr))
+
+label
+  display: flex
+  flex-direction: column
+  gap: 8px
+
+input
+  border: 1px solid #d7c8b3
+  border-radius: 14px
+  padding: 12px 14px
+
+.radio-row
+  display: flex
+  gap: 12px
+
+.radio-card
+  flex: 1
+  border: 1px solid #d7c8b3
+  border-radius: 16px
+  padding: 14px
+  flex-direction: row
+  align-items: center
+
+.form-actions
+  display: flex
+  align-items: center
+  gap: 14px
+  margin-top: 18px
+
+.primary-btn
+  border: 0
+  border-radius: 14px
+  padding: 14px 18px
+  background: linear-gradient(135deg, #8d5b2a, #59331a)
+  color: #fff
+
+.success-banner
+  color: #2d6a3e
+  background: #e6f5ea
+  padding: 10px 12px
+  border-radius: 12px
+
+.error-text
+  color: #a33a3a
+
+.table-card table
+  width: 100%
+  border-collapse: collapse
+
+.table-card th,
+.table-card td
+  text-align: left
+  padding: 10px 0
+  border-bottom: 1px solid rgba(58, 39, 18, 0.08)
+
+@media (max-width: 992px)
+  .users-layout,
+  .grid-3
+    grid-template-columns: 1fr
+
+  .grid-2
+    grid-template-columns: 1fr
+
+  .radio-row
+    flex-direction: column

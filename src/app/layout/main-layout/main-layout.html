@@ -1,14 +1,48 @@
-<div class="w-100">
-    <div class="d-flex justify-content-center align-items-center">
-        <img src="/logo/logo-v2.png" alt="logo da biblioteca">
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="/logo/logo-v2.png" alt="Biblioteca" />
+      <div>
+        <strong>Sistema Biblioteca</strong>
+        <span>Frontend conectado ao backend</span>
+      </div>
     </div>
-    <hr>
-    <div class="d-flex justify-content-center align-items-center gap-5 mt-5 mb-5 fs-2">
-        <a href="/"><i class="bi bi-house-fill">Início</i></a>
-        <a href="/livros"><i class="bi bi-book"></i>Livros</a>
-        <a href="/usuario"><i class="bi bi-person-circle"></i>Usuario</a>
-        <a role="button" (click)="onLogout()"><i class="bi bi-newspaper"></i>Sair</a>
-    </div>
-    <hr>
+
+    <nav class="nav-list">
+      <a
+        *ngFor="let item of navigation"
+        [routerLink]="item.path"
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <i class="bi" [class]="item.icon"></i>
+        <span>{{ item.label }}</span>
+      </a>
+    </nav>
+
+    <button class="logout-btn" type="button" (click)="onLogout()">
+      <i class="bi bi-box-arrow-right"></i>
+      Sair
+    </button>
+  </aside>
+
+  <main class="content">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Operação em andamento</p>
+        <h1>{{ session()?.name ?? 'Biblioteca universitária' }}</h1>
+      </div>
+      <div class="profile-chip">
+        <span>{{ initials() }}</span>
+        <div>
+          <strong>{{ session()?.name ?? 'Visitante' }}</strong>
+          <small>{{ session()?.roleLabel ?? 'Acesso de demonstração' }}</small>
+        </div>
+      </div>
+    </header>
+
+    <section class="page-frame">
+      <router-outlet></router-outlet>
+    </section>
+  </main>
 </div>
-<router-outlet></router-outlet>

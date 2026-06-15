@@ -1,19 +1,96 @@
-form
-    max-width: 400px
-    width: 50%
-    height: 100%
-    padding: 20px
-    border: 1px solid #ccc
-    border-radius: 5px
-    background-color: #f9f9f9
-#main-box
-    background-image: url('/library.jpg')
-    height: 100vh
+.auth-layout
+    min-height: 100vh
+    display: grid
+    grid-template-columns: 1.2fr 0.8fr
+    background: linear-gradient(135deg, rgba(32, 24, 15, 0.92), rgba(74, 49, 23, 0.88)), url('/library.jpg') center/cover
+    padding: 28px
+    gap: 28px
 
-@media(max-width: 768px)
-    #main-box
+.auth-panel
+    border-radius: 28px
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24)
+
+.hero
+    color: #fff8ef
+    display: flex
+    flex-direction: column
+    justify-content: end
+    padding: 40px
+    max-width: 760px
+
+    h1
+        font-size: clamp(2.4rem, 5vw, 4.8rem)
+        line-height: 0.95
+        max-width: 11ch
+        margin: 0
+
+    p
+        max-width: 55ch
+        font-size: 1.05rem
+        color: rgba(255, 248, 239, 0.9)
+
+.eyebrow
+    text-transform: uppercase
+    letter-spacing: 0.18em
+    font-size: 0.78rem
+    color: #f4c58a
+
+.form-card
+    background: rgba(255, 255, 255, 0.92)
+    padding: 32px
+    display: flex
+    align-items: center
+
+.auth-form
+    width: 100%
+    display: flex
+    flex-direction: column
+    gap: 18px
+
+    h2
+        margin-bottom: 0.25rem
+
+    p
+        margin: 0
+        color: #6f6152
+
+    label
         display: flex
-        justify-content: center !important
-        form
-            width: 100% !important
-            height: 400px
+        flex-direction: column
+        gap: 8px
+        font-weight: 600
+        color: #33281d
+
+    input
+        border: 1px solid #d7c8b3
+        border-radius: 14px
+        padding: 14px 16px
+        background: #fff
+
+.primary-btn
+    border: 0
+    border-radius: 14px
+    padding: 14px 18px
+    background: linear-gradient(135deg, #9e6a35, #5e3920)
+    color: white
+    font-weight: 700
+
+.feedback.error
+    border-radius: 12px
+    background: #ffe7e7
+    color: #972d2d
+    padding: 12px 14px
+
+@media (max-width: 992px)
+    .auth-layout
+        grid-template-columns: 1fr
+
+    .hero
+        min-height: 320px
+
+@media (max-width: 576px)
+    .auth-layout
+        padding: 16px
+
+    .form-card
+        padding: 22px

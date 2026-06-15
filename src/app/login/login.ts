@@ -1,32 +1,35 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule],
+  standalone: true,
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.sass',
 })
 export class Login {
+  private readonly fb = inject(NonNullableFormBuilder);
+  private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
 
-  public login: string = '';
-  public password: string = '';
+  protected readonly form = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    senha: ['', [Validators.required, Validators.minLength(6)]],
+  });
 
-  constructor(private router: Router) {}
+  protected readonly errorMessage = this.authService.loginError;
 
   onSubmit() {
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
-    const user = users.find((u: any) => u.username === this.login && u.password === this.password);
-    if (!user) {
-      alert('Login ou senha incorretos!');
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
       return;
     }
-    console.log('Login efetuado com sucesso:', this.login);
-    window.localStorage.setItem('username', this.login);
-    window.localStorage.setItem('password', this.password);
-    window.localStorage.setItem('role', user.role);
-    this.router.navigate(['/news']);
-  }
 
+    this.authService.login(this.form.getRawValue()).subscribe({
+      next: () => this.router.navigate(['/dashboard']),
+    });
+  }
 }

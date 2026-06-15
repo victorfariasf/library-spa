@@ -1,28 +1,36 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule],
+  standalone: true,
+  imports: [ReactiveFormsModule],
   templateUrl: './register.html',
   styleUrl: './register.sass',
 })
 export class Register {
- public login: string = '';
-  public password: string = '';
+  private readonly fb = inject(NonNullableFormBuilder);
+  private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
 
-  constructor(private router: Router) {}
+  protected readonly form = this.fb.group({
+    nome: ['', [Validators.required, Validators.minLength(3)]],
+    email: ['', [Validators.required, Validators.email]],
+    senha: ['', [Validators.required, Validators.minLength(6)]],
+  });
+
+  protected readonly successMessage = this.authService.registerSuccess;
 
   onSubmit() {
-    const newUser = {
-      username: this.login,
-      password: this.password,
-      role: 'user',
-    };
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
-    users.push(newUser);
-    localStorage.setItem('users', JSON.stringify(users));
-    this.router.navigate(['/login']);
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    this.authService.register(this.form.getRawValue()).subscribe({
+      next: () => this.router.navigate(['/login']),
+    });
   }
 }
